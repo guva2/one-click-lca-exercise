@@ -1,0 +1,23 @@
+We are implementing a web scraper to download all PDF files linked in a column
+from an HTML table.
+
+Each table cell can have multiple PDF links, which all appear to be associated
+with a single company that is specified in a different table column. For clarity
+we will organize the PDFs in directories by company. To illustrate, the PDF files
+for the first three companies should be stored in directories as follows:
+
+         2tec2            Addagrip Terraco            Aggregate Industries
+           |                      |                            |
+    ---------------               |              -----------------------------   
+    |             |               |              |             |             |
+B...167.pdf   B...168.pdf    B...209.pdf    B...199.pdf   B...205.pdf   B...206.pdf
+
+In terms of writing an implementation, let's split the work up into a few components:
+
+    * HttpService which handles requests and manages http client interactions
+        * Built in requests library should be sufficient for such a simple task
+    * HtmlParser which parses the html page/table and collects the links
+        * Probably will use the beautiful soup library for this
+    * Downloader/persistor which stores the pdfs in appropriate directories
+        * Built in file writing library should be sufficient for such a simple task
+    * A main application/scraper to coordinate components and maybe navigate urls
