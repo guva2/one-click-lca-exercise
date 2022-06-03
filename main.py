@@ -1,11 +1,20 @@
 from green_book_live.scraper import Scraper
 from file_management.file_writer import FileWriter
 
+import configparser
+
 def main():
-    scraper = Scraper()
-    pdf_files = scraper.scrape_page_pdf_files()
-    file_writer = FileWriter()
-    file_writer.write_all(pdf_files)
+    config = configparser.ConfigParser()
+    config.read('settings.ini')
+    base_url = config['DEFAULT']['GREEN_BOOK_LIVE_BASE_URL']
+    search_partid = config['DEFAULT']['COMPANY_SEARCH_PARTID']
+    search_results_pp = config['DEFAULT']['COMPANY_SEARCH_RESULTS_PP']
+    output_directory = config['DEFAULT']['OUTPUT_DIRECTORY']
+
+    scraper = Scraper(base_url)
+    files = scraper.scrape_page_pdf_files(search_partid, search_results_pp)
+    file_writer = FileWriter(output_directory)
+    file_writer.write_all(files)
 
 if __name__ == '__main__':
     main()
