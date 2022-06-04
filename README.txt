@@ -25,6 +25,7 @@ The requirements.txt file lists the external libraries and versions used:
 
     1) Requests for executing http requests
     2) BeautifulSoup for html parsing
+    3) Camelot for pdf -> xlsx conversion in the expansion problem
 
 The internal python libraries are:
 
@@ -105,3 +106,24 @@ for clarity:
       rewritten with every change. Moreover, robust testing is not as important
       for scripts that will not run regularly.
 
+Expansion:
+----------
+
+I've added a pdf converter that extracts pdf tables and exports them to xlsx
+files. The PdfConverter class is under the file_management package. The main
+code to convert pdfs is 'excel_main.py'. Simply install the requirements and
+run:
+
+    python excel_main.py
+
+There are various parameters for this script which can also be configured in
+'settings.ini'.
+
+Note that pdf conversion has many edge cases so some tables could be skipped
+or misformatted. I checked the files for 2tec2 and they seemed correct, but
+obviously couldn't check every single pdf/xlsx file.
+
+Output:
+-------
+
+All results are written to the out/ directory for your convenience.

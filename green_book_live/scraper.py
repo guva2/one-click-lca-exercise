@@ -48,6 +48,7 @@ class Scraper():
         for company in company_pdf_links:
             for pdf_link in company_pdf_links[company]:
                 pdf_file = self.gbl_http_service.get_file(pdf_link)
-                pdf_file.dir_path = company
-                yield pdf_file
+                if pdf_file:
+                    pdf_file.dir_path = company
+                    yield pdf_file
 
