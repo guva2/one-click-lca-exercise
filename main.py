@@ -6,13 +6,13 @@ import configparser
 def main():
     config = configparser.ConfigParser()
     config.read('settings.ini')
-    base_url = config['DEFAULT']['GREEN_BOOK_LIVE_BASE_URL']
-    search_partid = config['DEFAULT']['COMPANY_SEARCH_PARTID']
-    search_results_pp = config['DEFAULT']['COMPANY_SEARCH_RESULTS_PP']
-    output_directory = config['DEFAULT']['OUTPUT_DIRECTORY']
+    base_url = config['scraper']['GREEN_BOOK_LIVE_BASE_URL']
+    search_partid = int(config['scraper']['COMPANY_SEARCH_PARTID'])
+    search_results_pp = int(config['scraper']['COMPANY_SEARCH_RESULTS_PP'])
+    output_directory = config['scraper']['OUTPUT_DIRECTORY']
 
     scraper = Scraper(base_url)
-    files = scraper.scrape_page_pdf_files(search_partid, search_results_pp)
+    files = scraper.scrape_page_pdf_files(search_partid, results_pp=search_results_pp)
     file_writer = FileWriter(output_directory)
     file_writer.write_all(files)
 

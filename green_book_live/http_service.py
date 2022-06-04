@@ -104,10 +104,16 @@ class GBLHttpService:
 
         file_name = path.split('/')[-1]
         file_content = self._http_get(path, payload)
-        return MemoryFile(file_name, file_content)
+        if file_content:
+            return MemoryFile(file_name, file_content)
+        else:
+            return None
 
     def _http_get(self, path, payload={}):
         url = self.base_url + path
         print("Executing GET Request at: %s" % url) 
         response = requests.get(url, payload)
-        return response.content
+        if response.ok:
+            return response.content
+        else:
+            return None
