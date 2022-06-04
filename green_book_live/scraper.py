@@ -1,6 +1,7 @@
 from .http_service import GBLHttpService
 from .html_parser import CompanySearchHtmlParser
 
+
 class Scraper():
     """
     A scraper that extracts pdfs from GreenBookLive.
@@ -51,4 +52,3 @@ class Scraper():
                 if pdf_file:
                     pdf_file.dir_path = company
                     yield pdf_file
-

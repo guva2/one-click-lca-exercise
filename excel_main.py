@@ -3,13 +3,16 @@ import os
 
 from file_management.pdf_converter import PdfConverter
 
+
 def get_pdf_name(root_path, file_name):
     return '/'.join([root_path, file_name])
+
 
 def get_output_sub_path(input_root, input_path, input_file_name):
     input_sub_path = input_path.removeprefix(input_root)
     pdf_name_stem = input_file_name.removesuffix('.pdf')
     return '/'.join([input_sub_path, pdf_name_stem])
+
 
 def main():
     config = configparser.ConfigParser()
@@ -32,6 +35,7 @@ def main():
                                                   file_name)
 
             pdf_converter.convert_pdf(pdf_name, output_sub_path)
+
 
 if __name__ == '__main__':
     main()

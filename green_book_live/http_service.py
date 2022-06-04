@@ -3,7 +3,8 @@ from file_management.memory_file import MemoryFile
 import requests
 
 COMPANY_SEARCH_PATH = 'search/companysearch.jsp'
- 
+
+
 class GBLHttpService:
     """
     A service that handles http interactions with GreenBookLive.
@@ -111,7 +112,7 @@ class GBLHttpService:
 
     def _http_get(self, path, payload={}):
         url = self.base_url + path
-        print("Executing GET Request at: %s" % url) 
+        print('Executing GET Request at: {}'.format(url))
         response = requests.get(url, payload)
         if response.ok:
             return response.content

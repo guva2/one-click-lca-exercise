@@ -1,5 +1,6 @@
 import os
 
+
 class FileWriter:
     """
     A file writing utility class.

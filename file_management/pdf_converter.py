@@ -3,6 +3,7 @@ import os
 
 EXCEL_SUFFIX = '.xlsx'
 
+
 class PdfConverter():
     """
     A class that converts pdf files to excel sheets
@@ -31,7 +32,7 @@ class PdfConverter():
         reads a pdf and exports all its tables to excel sheets
     """
 
-    def __init__(self, output_directory, min_accuracy, page_range, 
+    def __init__(self, output_directory, min_accuracy, page_range,
                  line_scale, table_regions):
         """
         Parameters
