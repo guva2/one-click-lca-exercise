@@ -3,6 +3,7 @@ from file_management.file_writer import FileWriter
 
 import configparser
 
+
 def main():
     config = configparser.ConfigParser()
     config.read('settings.ini')
@@ -12,9 +13,11 @@ def main():
     output_directory = config['scraper']['OUTPUT_DIRECTORY']
 
     scraper = Scraper(base_url)
-    files = scraper.scrape_page_pdf_files(search_partid, results_pp=search_results_pp)
+    files = scraper.scrape_page_pdf_files(search_partid,
+                                          results_pp=search_results_pp)
     file_writer = FileWriter(output_directory)
     file_writer.write_all(files)
+
 
 if __name__ == '__main__':
     main()

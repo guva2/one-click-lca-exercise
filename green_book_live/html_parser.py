@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 COMPANY_HEADER = 'Company'
 CERT_NO_HEADER = 'Cert. No.'
 
+
 class CompanySearchHtmlParser:
     """
     A parser that extracts pdf links from a company search results page.
@@ -42,11 +43,12 @@ class CompanySearchHtmlParser:
         table = soup.find(id='search-results')
         company_index, cert_no_index = self.__extract_column_indices(table)
         for row in table.find_all('tr'):
-            company, links =  self.__parse_row(row,
-                                               company_index,
-                                               cert_no_index)
+            company, links = self.__parse_row(row,
+                                              company_index,
+                                              cert_no_index)
             if company and links:
-                new_links = links - self._processed_pdf_links.get(company, set())
+                new_links = links - self._processed_pdf_links.get(company,
+                                                                  set())
                 company_pdf_links[company] = new_links
                 self.__add_processed_pdf_links(company, new_links)
         return company_pdf_links
@@ -64,7 +66,7 @@ class CompanySearchHtmlParser:
         return (None, None)
 
     def __parse_pdf_links(self, pdf_link_cell):
-        pdf_links= []
+        pdf_links = []
         raw_pdf_links = pdf_link_cell.find_all('a', href=True)
         return {self.__format_pdf_link(link) for link in raw_pdf_links}
 
@@ -77,5 +79,3 @@ class CompanySearchHtmlParser:
             self._processed_pdf_links[company].update(pdf_links)
         else:
             self._processed_pdf_links[company] = pdf_links
-
-
