@@ -86,7 +86,7 @@ Future Changes:
 ---------------
 
 This project was left a open ended, and there are features that would be nice
-to add that I assumed were out of scope of this project. I will list them here
+to add that I thought were out of scope for this project. I will list them here
 for clarity:
 
     * Logging. This project was framed as a script that only needs to be run
@@ -105,6 +105,19 @@ for clarity:
       a brittle system seems counterproductive, as they will also have to be
       rewritten with every change. Moreover, robust testing is not as important
       for scripts that will not run regularly.
+
+    * Web Driver. I initially chose not to use a web driver because I thought it
+      would be overkill. I didn't expect any significant link crawling would be
+      necessary. As it turns out the search results are paginated, and the pdf
+      links are relative links as opposed to absolute links. This script could
+      benefit from a proper web driver to navigate these specific links. 
+
+    * Company Search parameters. The Green Book Live company search takes many
+      parameters. Most of them seemed irrelevant for this assignment. As such
+      I didn't make them accessible end-to-end. I did set up the http client to
+      handle these arguments, but didn't expose them all the way to the main
+      script. If this script was meant to be used regularly, I'd expose all
+      of these parameters via config and program arguments.
 
 Expansion:
 ----------
